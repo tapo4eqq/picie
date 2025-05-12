@@ -1,0 +1,430 @@
+/* Общие стили */
+body {
+    font-family: sans-serif; /*  Подходящий шрифт */
+    background-color: #1C1D21; /* Темный фон, как на изображении */
+    color: white; /*  Белый текст */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем по горизонтали */
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    width: 100%; /* На всю ширину экрана */
+    background-color: #1C1D21; /* Цвет фона как у body */
+}
+
+.logo {
+    font-family: 'Brush Script MT', cursive; /* Пример шрифта, похож на логотип */
+    font-size: 2.5em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.contact-info {
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+nav a {
+    display: block; /*  Делаем ссылки блочными */
+    padding: 15px 30px; /* Увеличиваем область для нажатия */
+    text-decoration: none;
+    color: #ccc;
+    background-color: #333;
+    border-radius: 20px; /* Закругление углов */
+    margin: 0 10px; /* Отступы между ссылками */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета */
+}
+
+nav a:hover {
+    background-color: #555;
+    color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%; /*  Растягиваем на всю ширину */
+    padding: 20px;
+    max-width: 1200px; /* Ограничиваем ширину основного контента */
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+
+.left-column {
+    width: 25%;
+    margin-right: 20px;
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+
+.right-column {
+    width: 70%;
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+
+.category-block {
+    background-color: #222;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.category-block h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.category-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-block li {
+    margin-bottom: 5px;
+}
+
+.category-block li a {
+    color: #aaa;
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.category-block li a:hover {
+    background-color: #444;
+    color: white;
+}
+
+.services-block {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /*  Перенос на новую строку при нехватке места */
+}
+
+.service-item {
+    text-align: center;
+    width: 150px; /*  Фиксированная ширина элементов */
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #222;
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+
+.service-item img {
+    width: 60px; /*  Размер иконок */
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/* Страницы, кроме главной */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content-section {
+    background-color: #222;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left-column, .right-column {
+        width: 90%;
+        margin-right: 0;
+    }
+    .services-block {
+        justify-content: flex-start; /*  Выравнивание по левому краю на маленьких экранах */
+    }
+    .service-item {
+        width: 150px; /*  Ширина сервисов на маленьких экранах */
+        margin-right: 10px;
+    }
+
+    nav a {
+        padding: 10px 20px;
+        margin: 5px;
+    }
+}
+/* Навигация для слабовидящих */
+.accessibility-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #333; /* Затемненный фон для лучшего контраста */
+    border-bottom: 1px solid #555; /* Более заметная граница */
+    width: 100%; /*  Растягиваем на всю ширину */
+    box-sizing: border-box; /*  Чтобы padding не влиял на ширину */
+}
+
+.accessibility-nav button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #555; /* Цвет кнопок */
+    color: #fff; /*  Цвет текста на кнопках */
+    transition: background-color 0.3s ease;
+}
+
+.accessibility-nav button:hover {
+    background-color: #777; /* Цвет при наведении */
+}
+
+body.larger-font {
+    font-size: 1.2em;
+}
+
+body.high-contrast {
+    background-color: black;
+    color: white;
+}
+
+body.high-contrast a {
+    color: lightblue;
+}
+
+/* Кнопка возврата на главную */
+.back-to-home {
+    text-align: center; /* Центрируем кнопку */
+    margin-top: 20px;
+}
+
+.back-to-home a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50; /*  Зеленый цвет */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+    .back-to-home {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.back-to-home a {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.back-to-home a {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.shelf {
+    background-color: #222; /* Цвет "полки" */
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    text-align: center; /* Центрируем компьютеры на полке */
+}
+
+.computer-item {
+    display: inline-block; /* Чтобы элементы выстраивались в ряд */
+    width: 200px; /* Примерная ширина */
+    margin: 10px;
+    text-align: center;
+}
+
+.computer-item img {
+    width: 180px; /* Размер изображения */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+footer {
+    text-align: center;
+    padding: 20px 0;
+    width: 100%; /* На всю ширину экрана */
+    background-color: #1C1D21; /* Цвет фона как у body */
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /*  Равномерное распределение */
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #222;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+/* Стили для изображений товаров (новые стили) */
+.product-card img {
+    width: 100%;
+    height: 200px; /* Фиксированная высота */
+    object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.product-card p {
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    /* Зеленый */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #45a049;
+}
+
+/* Стили для корзины */
+
+#cart {
+    background-color: #333;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#cart h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #555;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-name {
+    flex-grow: 1;
+    /*  Занимает все доступное пространство */
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-quantity button {
+    padding: 5px 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.cart-item-quantity button:hover {
+    background-color: #777;
+}
+
+#cart-total {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+/* Адаптивность для товаров */
+
+@media (max-width: 768px) {
+    .product-card {
+        width: 45%;
+        /*  Увеличение ширины на маленьких экранах */
+    }
+}
+
+@media (max-width: 576px) {
+    .product-card {
+        width: 90%;
+        /*  Товар на всю ширину на самых маленьких экранах */
+    }
+}.service-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.service-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    vertical-align: middle; /* Выравнивание по центру */
+}
+
+.service-item h3 {
+    display: inline;  /*  Чтобы картинка и заголовок были в строке */
+    margin-left: 15px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    vertical-align: middle; /* Выравнивание по центру */
+}
+
+.service-item ul {
+    list-style: disc;  /*  Или другой стиль маркеров */
+    padding-left: 20px;
+}
+
+.service-item li {
+    margin-bottom: 5px;
+}

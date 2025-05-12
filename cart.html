@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - IntelligentPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="back-to-home">
+            <a href="index.html">На главную</a>
+        </div>
+        <div class="logo">IntelligentPC</div>
+        <div class="contact-info">
+            <span class="phone">+7 (962) 910-91-44</span>
+        </div>
+    </header>
+
+    <nav>
+        <a href="assemblies.html">Сборки компьютеров</a>
+        <a href="cart.html">Корзина</a> 
+        <a href="support.html">Поддержка</a>
+        <a href="servers.html">Серверы</a>
+        <a href="services.html">Услуги</a>
+    </nav>
+
+    <main>
+        <div class="right-column">
+            <h2 class="page-title">Корзина</h2>
+            <div class="content-section">
+                <p>Проверьте товары в вашей корзине и оформите заказ.</p>
+            </div>
+
+            <aside id="cart">
+                <ul id="cart-items">
+                    <!-- Здесь будут добавляться товары -->
+                </ul>
+                <div id="cart-total">
+                    Итого: 0 руб.
+                </div>
+                <!-- Кнопка для очистки корзины -->
+                <button id="clear-cart-button">Очистить корзину</button>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <span class="phone">+7 (962) 910-91-44</span>
+        </div>
+        <!-- Добавляем счетчик посещений -->
+        <div id="counter">Количество посещений: Загрузка...</div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Получаем счетчик из localStorage
+        let visitCount = localStorage.getItem('visitCount');
+
+        // Если счетчика нет, устанавливаем значение 1
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            // Если счетчик есть, увеличиваем его на 1
+            visitCount = parseInt(visitCount) + 1;
+        }
+
+        // Сохраняем новое значение счетчика в localStorage
+        localStorage.setItem('visitCount', visitCount);
+
+        // Отображаем счетчик на странице
+        document.getElementById('counter').textContent = 'Количество посещений (в этом браузере): ' + visitCount;
+
+        // Функция для очистки корзины
+        function clearCart() {
+            // Очищаем localStorage
+            localStorage.removeItem('cartItems');
+
+            // Очищаем отображение корзины на странице
+            const cartItemsList = document.getElementById('cart-items');
+            cartItemsList.innerHTML = ''; // Удаляем все элементы из списка
+
+            // Обновляем итоговую сумму
+            updateCartTotal();
+        }
+
+        // Привязываем функцию к кнопке (убедитесь, что DOM загружен)
+        document.addEventListener('DOMContentLoaded', function() {
+            const clearCartButton = document.getElementById('clear-cart-button');
+            if (clearCartButton) {
+                clearCartButton.addEventListener('click', clearCart);
+            } else {
+                console.error("Кнопка 'Очистить корзину' не найдена!");
+            }
+
+            // Загружаем товары из корзины при загрузке страницы
+            loadCartItems();
+
+             // Обновляем итоговую сумму при загрузке страницы
+            updateCartTotal();
+        });
+
+         // Функция для обновления итоговой суммы
+        function updateCartTotal() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.price;
+            });
+
+            document.getElementById('cart-total').textContent = 'Итого: ' + total + ' руб.';
+        }
+
+        // Функция для загрузки товаров из корзины и отображения на странице
+        function loadCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsList = document.getElementById('cart-items');
+
+            cartItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.name + ' - ' + item.price + ' руб.';
+                cartItemsList.appendChild(listItem);
+            });
+        }
+
+    </script>
+</body>
+
+</html>
