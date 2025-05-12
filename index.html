@@ -89,6 +89,78 @@
         <div id="counter">Количество посещений: Загрузка...</div>
     </footer>
     <script src="app.js"></script>
+
+     <script>
+        // Получаем счетчик из localStorage
+        let visitCount = localStorage.getItem('visitCount');
+
+        // Если счетчика нет, устанавливаем значение 1
+        if (!visitCount) {
+            visitCount = 1;
+        } else {
+            // Если счетчик есть, увеличиваем его на 1
+            visitCount = parseInt(visitCount) + 1;
+        }
+
+        // Сохраняем новое значение счетчика в localStorage
+        localStorage.setItem('visitCount', visitCount);
+
+        // Отображаем счетчик на странице
+        document.getElementById('counter').textContent = 'Количество посещений (в этом браузере): ' + visitCount;
+
+        // Функция для очистки корзины
+        function clearCart() {
+            // Очищаем localStorage
+            localStorage.removeItem('cartItems');
+
+            // Очищаем отображение корзины на странице
+            const cartItemsList = document.getElementById('cart-items');
+            cartItemsList.innerHTML = ''; // Удаляем все элементы из списка
+
+            // Обновляем итоговую сумму
+            updateCartTotal();
+        }
+
+        // Привязываем функцию к кнопке (убедитесь, что DOM загружен)
+        document.addEventListener('DOMContentLoaded', function() {
+            const clearCartButton = document.getElementById('clear-cart-button');
+            if (clearCartButton) {
+                clearCartButton.addEventListener('click', clearCart);
+            } else {
+                console.error("Кнопка 'Очистить корзину' не найдена!");
+            }
+
+            // Загружаем товары из корзины при загрузке страницы
+            loadCartItems();
+
+             // Обновляем итоговую сумму при загрузке страницы
+            updateCartTotal();
+        });
+
+         // Функция для обновления итоговой суммы
+        function updateCartTotal() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.price;
+            });
+
+            document.getElementById('cart-total').textContent = 'Итого: ' + total + ' руб.';
+        }
+
+        // Функция для загрузки товаров из корзины и отображения на странице
+        function loadCartItems() {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsList = document.getElementById('cart-items');
+
+            cartItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item.name + ' - ' + item.price + ' руб.';
+                cartItemsList.appendChild(listItem);
+            });
+        }
+
+    </script>
 </body>
 
 </html>
